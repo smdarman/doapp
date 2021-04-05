@@ -26,8 +26,8 @@ const styles = StyleSheet.create({
     borderColor: 'coral',
     borderWidth: 2,
     borderStyle: 'dashed',
-    borderRadius: 4
-    // backgroundColor: "#fff",
+    borderRadius: 10,
+    color: "blue"
    
   },
 })

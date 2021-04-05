@@ -6,7 +6,7 @@ export default function Header() {
  
   return (
     <View style={styles.header}>
-        <Text style={styles.title}>Do it app!</Text>
+        <Text style={styles.title} >Randoit!</Text>
      
     </View>
   );
@@ -15,17 +15,20 @@ export default function Header() {
 const styles = StyleSheet.create({
   
   header: {
-    alignItems: 'center',
-      paddingTop: 20,
-    
-      height: 100,
-      width: 350,
+alignItems: 'center',
+
+
+marginBottom: 50,
+      height: 150,
+      width: 650,
     color: 'blue',
-    backgroundColor: 'blue'
+ backgroundColor: 'coral',
   },
   title: {
-    color: 'white',
+    marginTop: 80,
+
     fontSize: 20,
     fontWeight: 'bold'
+
   }
 });

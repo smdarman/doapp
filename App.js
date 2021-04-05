@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 import React, { useState } from "react";
 import {
   StyleSheet,
@@ -20,27 +20,26 @@ import AddItem from "./components/addItem";
 
 export default function App() {
   const [todos, setData] = useState([
-    // {
-    //   id: "1",
-    //   title: "First Item",
-    // },
-    // {
-    //   id: "2",
-    //   title: "Second Item",
-    // },
-    // {
-    //   id: "3",
-    //   title: "Third Item",
-    // },
-    // {
-    //   id: "4",
-    //   title: "Fourth Item",
-    // },
+    {
+      id: "1",
+      title: "Trade",
+    },
+    {
+      id: "2",
+      title: "Pharm",
+    },
+    {
+      id: "3",
+      title: "Coding",
+    },
+    {
+      id: "4",
+      title: "Music",
+    },
   ]);
   // console.log(todos[0]['title'])
   // console.log(todos.length)
   //todos.lenght+1
-  
 
   const [test, setTest] = useState("clock...");
 
@@ -53,10 +52,8 @@ export default function App() {
   const sumbitHandler = (text) => {
     console.log("handler pressed");
     setData((prevTodos) => {
-      return [{ title: text, id: (Math.random()).toString()  }, ...prevTodos];
-
+      return [{ title: text, id: Math.random().toString() }, ...prevTodos];
     });
-    
   };
 
   // const renderItem = ({ item }) => <Item title={item.title} />;
@@ -68,16 +65,18 @@ export default function App() {
     var random = todos[Math.floor(Math.random() * todos.length)]["title"];
     console.log(random);
     // random = 'hello'
-    Alert.alert(random);
+    alert(random);
     mojo();
-
-   setData((prevTodos) => {
-    return [{ title: random}];
-  });
+    // setData(random)
+    // setData((prevTodos) => {
+    // //return [{ title: random }];
+    // return [prevTodos.filter((todos) => todos.title == random), ...prevTodos]
+    // })
+    setData((prevTodos) => {
+      return prevTodos.filter((todo) => todo.title != random);
+    });
   
-    // () => Alert.alert('Simple Button pressed')
-    //id: todos.length + 1
-    // document.getElementById("message").innerHTML=random;
+  
   }
   function mojo() {
     setTimeout(() => {
@@ -94,102 +93,118 @@ export default function App() {
 
   const refreshPage = () => {
     // console.log({label})
-    setTest("hi");
-    setData("");
+    // setTest("hi");
+    setTest("");
+    // setData(todos);
+    setData((prevTodos) => {
+    return [...prevTodos];
+    })
+    //     return [prevTodos.filter((todos) => todo.id != id)
+    //   ,...prevTodos]
+  
+      
+    // })
+    
   };
 
   // console.log(sumbitHandler)
   return (
-   
     <View style={styles.container}>
-      <View style={styles.head}>
-        <Header />
+      {/* <View style={styles.head}> </View> */}
+      <Header />
+      <Text>{test}</Text>
+      <View>
+      <TouchableHighlight
+          style={{
+            height: 40,
+            width: 160,
+
+            borderRadius: 10,
+            backgroundColor: "tomato",
+            marginLeft: 50,
+            marginRight: 50,
+            marginTop: 20,
+          }}
+        >
+        {/* <Text>{test}</Text> */}
+        <Button onPress={refreshPage} title="Refresh" />
+        </TouchableHighlight>
       </View>
-      
       <View style={styles.content}>
         <AddItem submitHandler={sumbitHandler} />
-        
-      </View>
-<View style={styles.refresh}>
-      <Text>{test}</Text>
-  <Button onPress={refreshPage} title="RESTART" />
-</View>
-      
-       <View styles={styles.list}>
-        <FlatList
-          data={todos}
-          renderItem={({ item }) => (
-            <DeleteItem item={item} pressHandler={pressHandler} />
-          )}
-          keyExtractor={(item) => item.id}
-        />
-       <View style={styles.rando}>
-             <TouchableHighlight
-            style={{
-              height: 40,
-              width: 160,
 
-              borderRadius: 10,
-              backgroundColor: "black",
-              marginLeft: 50,
-              marginRight: 50,
-              marginTop: 20,
-            }}
-          >
-            <Button onPress={GetValue} title="Press Me" color="white"></Button>
-          </TouchableHighlight>
-       </View>
-      
-        
-        
+        <View style={styles.list}>
+          <FlatList
+            data={todos}
+            renderItem={({ item }) => (
+              <DeleteItem item={item} pressHandler={pressHandler} />
+            )}
+            keyExtractor={(item) => item.id}
+          />
+        </View>
       </View>
+      <View style={styles.rando}>
+        <TouchableHighlight
+          style={{
+            height: 40,
+            width: 160,
 
-      <StatusBar style="auto" />
-      
-
+            borderRadius: 10,
+            backgroundColor: "tomato",
+            marginLeft: 50,
+            marginRight: 50,
+            marginTop: 20,
+          }}
+        >
+          <Button onPress={GetValue} title="Press Me" color="black"></Button>
+        </TouchableHighlight>
       </View>
-    
+    </View>
   );
 }
-
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+
     
-    marginTop: 100,
-    padding: 20,
     flexDirection: "column",
-    backgroundColor: "white",
+    backgroundColor: "#00ffff",
     alignItems: "center",
     justifyContent: "center",
-    marginBottom: 100,
   },
- 
+
   content: {
+    flex: 4,
+    backgroundColor: "pink",
     marginTop: 10,
-    // marginHorizontal: 5,
-    // marginVertical: 5,
-    // backgroundColor: "coral",
-  
+    marginBottom: 10,
+
+    marginVertical: 1,
+    marginHorizontal: 1,
   },
   list: {
-    
-    marginTop: 10,
+   flex:1,
     backgroundColor: "white",
-    marginBottom: 100
+    width: 400,
+    height: 500,
+
+    marginTop: 1,
+
+    marginBottom: 1,
   },
   refresh: {
-    
+    marginTop: 10,
+    marginBottom: 6,
+
     marginVertical: 10,
     marginHorizontal: 16,
   },
-  head: {
-    marginTop: 200,
-    paddingTop: 40
-  },
+  head: {},
   rando: {
-    paddingTop: 10,
-    marginBottom: 200,
-  }
+    flex: 1,
+
+    paddingTop: 100,
+    marginBottom: 6,
+  },
 });
