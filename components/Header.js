@@ -1,12 +1,13 @@
 
 import React from 'react';
-import { StyleSheet, Text, View, Button } from 'react-native';
+import { StyleSheet, Text, View} from 'react-native';
+import { FontAwesome5 } from '@expo/vector-icons'; 
 
 export default function Header() {
  
   return (
     <View style={styles.header}>
-        <Text style={styles.title} >Randoit!</Text>
+        <Text style={styles.title} ><FontAwesome5 name="running" size={24} color="black" /> Run Do it!</Text>
      
     </View>
   );
