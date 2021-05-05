@@ -82,14 +82,20 @@ export default function Home({ itemValue }) {
 
     setData((prevTodos) => {
       return prevTodos.filter((todo) => todo.title != random);
+    
     });
+    let maximum = 1500;
+    let minimum = 4500;
+    var randomnumber = Math.floor(Math.random() * (maximum - minimum + 1)) + minimum;
+    console.log(randomnumber)
+    setMyPick(randomnumber)
   }
   function mojo() {
     setTimeout(() => {
       setClock(
         <CountDown
           // until={parseInt(mypick)}
-          until={parseInt(mypick)}
+          until={mypick}
           onFinish={() => alert("finished")}
           onPress={() => alert("hello")}
           size={30}
@@ -148,7 +154,7 @@ export default function Home({ itemValue }) {
             selectedValue={mypick}
             onValueChange={(itemValue, itemIndex) => setMyPick(itemValue)}
           >
-            <Picker.Item label="Select Value" value={secTime[0]} />
+            <Picker.Item label="Select Value" value={1500} />
             <Picker.Item label="25min" value={secTime[0]} />
             <Picker.Item label="45min" value={secTime[1]} />
             <Picker.Item label="1hr" value={secTime[2]} />
@@ -183,7 +189,7 @@ export default function Home({ itemValue }) {
               ) : null}
             </Text>
           </View>
-
+          <Text>{mypick}</Text>
           <View style={styles.compass}>
             <View style={styles.refresh}>
               <TouchableHighlight
@@ -244,7 +250,7 @@ export default function Home({ itemValue }) {
               >
                 <Button
                   onPress={GetValue}
-                  title="Randomise"
+                  title="Random"
                   color="blue"
                 ></Button>
               </TouchableHighlight>

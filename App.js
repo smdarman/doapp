@@ -23,20 +23,20 @@ export default function App() {
         <Tab.Screen style={{color: 'red'}} name="HOME" component={Home} options={{
           tabBarLabel: 'Home',
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home" color="blue" size={35} />
+            <MaterialCommunityIcons name="home" color="blue" size={30} />
           ),
         }} />
          
-        <Tab.Screen name="SETTINGS" component={SettingsScreen} options={{
+        {/* <Tab.Screen name="SETTINGS" component={SettingsScreen} options={{
           tabBarLabel: 'Setting',
           tabBarIcon: ({ color, size }) => (
             <Feather name="settings" size={24} color="black" />
           ),
-        }}/>
-        <Tab.Screen name="ABOUT" component={About} options={{
-          tabBarLabel: 'ABOUT',
+        }}/> */}
+        <Tab.Screen name="About" component={About} options={{
+          tabBarLabel: 'About',
           tabBarIcon: ({ color, size }) => (
-            <Feather name="info" size={24} color="blue" />
+            <Feather name="info" size={30} color="blue" />
           ),
         }}/>
       </Tab.Navigator>
