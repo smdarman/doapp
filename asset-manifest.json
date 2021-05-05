@@ -1,11 +1,20 @@
 {
   "files": {
+<<<<<<< HEAD
     "app.js": "/static/js/app.4c60b917.chunk.js",
     "app.js.map": "/static/js/app.4c60b917.chunk.js.map",
     "runtime~app.js": "/static/js/runtime~app.2e9f1821.js",
     "runtime~app.js.map": "/static/js/runtime~app.2e9f1821.js.map",
     "static/js/2.4e3bcd32.chunk.js": "/static/js/2.4e3bcd32.chunk.js",
     "static/js/2.4e3bcd32.chunk.js.map": "/static/js/2.4e3bcd32.chunk.js.map",
+=======
+    "app.js": "/static/js/app.16528f41.chunk.js",
+    "app.js.map": "/static/js/app.16528f41.chunk.js.map",
+    "runtime~app.js": "/static/js/runtime~app.2e9f1821.js",
+    "runtime~app.js.map": "/static/js/runtime~app.2e9f1821.js.map",
+    "static/js/2.1336b531.chunk.js": "/static/js/2.1336b531.chunk.js",
+    "static/js/2.1336b531.chunk.js.map": "/static/js/2.1336b531.chunk.js.map",
+>>>>>>> 830b5fb0e6bbfb98e030699df03f692cb5fd4b9c
     "fonts/AntDesign.ttf": "/./fonts/AntDesign.ttf",
     "fonts/Entypo.ttf": "/./fonts/Entypo.ttf",
     "fonts/Feather.ttf": "/./fonts/Feather.ttf",
@@ -24,11 +33,20 @@
     "index.html": "/index.html",
     "manifest.json": "/manifest.json",
     "serve.json": "/serve.json",
+<<<<<<< HEAD
     "static/js/2.4e3bcd32.chunk.js.LICENSE.txt": "/static/js/2.4e3bcd32.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime~app.2e9f1821.js",
     "static/js/2.4e3bcd32.chunk.js",
     "static/js/app.4c60b917.chunk.js"
+=======
+    "static/js/2.1336b531.chunk.js.LICENSE.txt": "/static/js/2.1336b531.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime~app.2e9f1821.js",
+    "static/js/2.1336b531.chunk.js",
+    "static/js/app.16528f41.chunk.js"
+>>>>>>> 830b5fb0e6bbfb98e030699df03f692cb5fd4b9c
   ]
 }
