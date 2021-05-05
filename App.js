@@ -6,6 +6,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 import Home from "./components/Home"
 import { test } from "./components/test";
+import { About } from "./components/About";
 
 function SettingsScreen() {
   return (
@@ -23,7 +24,7 @@ export default function App() {
       <Tab.Navigator>
         <Tab.Screen name="Home" component={Home} />
         <Tab.Screen name="Settings" component={SettingsScreen} />
-        <Tab.Screen name="Profile" component={test} />
+        <Tab.Screen name="About" component={About} />
       </Tab.Navigator>
     </NavigationContainer>
   );

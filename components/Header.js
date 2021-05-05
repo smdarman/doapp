@@ -19,14 +19,15 @@ const styles = StyleSheet.create({
 alignItems: 'center',
 
 
-marginBottom: 50,
-      height: 150,
-      width: 650,
+// marginBottom: 5,
+      height: 50,
+      // width: 100,
+      alignSelf: 'stretch',
     color: 'blue',
  backgroundColor: 'coral',
   },
   title: {
-    marginTop: 80,
+    marginTop: 8,
 
     fontSize: 20,
     fontWeight: 'bold'

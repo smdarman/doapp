@@ -15,7 +15,7 @@ function AddItem({submitHandler})  {
   return ( 
     <View style={styles.input}>
       <TextInput 
-       style={{ height: 40, width: 240 , borderColor: 'gray', borderWidth: 2 }}
+       style={{ height: 40, width: 440 , borderColor: 'gray', borderWidth: 2 }}
       placeholder="add item..."
       onChangeText={changeHandler}
       clearButtonMode="always" 
@@ -40,6 +40,8 @@ const styles = StyleSheet.create({
    flexDirection: "row",
     marginTop: 1,
     marginBottom: 1,
+    marginLeft: 29,
+    marginRight: 29,
     alignItems: "flex-start",
      paddingHorizontal: 10,
     paddingVertical: 10,
