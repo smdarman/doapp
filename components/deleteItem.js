@@ -18,10 +18,7 @@ function DeleteItem  ({item, pressHandler})  {
     </TouchableOpacity>
   );
 }
-///const Item = ({ title }) => (
-//   <View style={styles.item}>
-//   <Text style={styles.title}>{title}</Text>
-// </View>
+
 export default DeleteItem;
 
 const styles = StyleSheet.create({
@@ -34,7 +31,9 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderStyle: 'dashed',
     borderRadius: 10,
-    color: "blue",
+    color: "black",
+    fontSize: 20,
+    fontWeight: 'bold',
     justifyContent: 'space-between'
    
   },
