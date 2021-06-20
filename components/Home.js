@@ -9,6 +9,8 @@ import {
   TouchableHighlight,
   TextInput,
   Alert,
+  Pressable,
+  Modal,
   ScrollView,
 } from "react-native";
 import CountDown from "react-native-countdown-component";
@@ -19,8 +21,15 @@ import AddItem from "./addItem";
 import { Ionicons } from "@expo/vector-icons";
 import { Feather } from "@expo/vector-icons";
 import { About } from "./About";
+import { color } from "react-native-reanimated";
+import { MaterialIcons } from "@expo/vector-icons";
+import { Octicons } from "@expo/vector-icons";
 
-export default function Home() {
+import { Picker } from "react-native";
+import SettingsScreen from "./Settings";
+// import Slider from '@react-native-community/slider';
+
+export default function Home({ itemValue }) {
   const [todos, setData] = useState([
     {
       id: "1",
@@ -43,12 +52,12 @@ export default function Home() {
       title: "Music",
     },
   ]);
-  // console.log(todos[0]['title'])
-  // console.log(todos.length)
-  //todos.lenght+1
 
   const [clock, setClock] = useState("");
-  const [rand, setRand] = useState("");
+  const [rand, setRand] = useState(null);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [mypick, setMyPick] = useState(0);
+  let secTime = [1500, 2700, 3600];
 
   const pressHandler = (id) => {
     setData((prevTodos) => {
@@ -63,22 +72,14 @@ export default function Home() {
     });
   };
 
-  // const renderItem = ({ item }) => <Item title={item.title} />;
-
   function GetValue() {
-    // var myarray= new Array("item1","item2","item3");
-    // var random = myarray[Math.floor(Math.random() * myarray.length)];
-
     var random = todos[Math.floor(Math.random() * todos.length)]["title"];
     console.log(random);
-    // random = 'hello'
+
     alert(random);
     mojo();
     setRand(random);
-    // setData((prevTodos) => {
-    // //return [{ title: random }];
-    // return [prevTodos.filter((todos) => todos.title == random), ...prevTodos]
-    // })
+
     setData((prevTodos) => {
       return prevTodos.filter((todo) => todo.title != random);
     });
@@ -87,10 +88,11 @@ export default function Home() {
     setTimeout(() => {
       setClock(
         <CountDown
-          until={1500}
+          // until={parseInt(mypick)}
+          until={parseInt(mypick)}
           onFinish={() => alert("finished")}
           onPress={() => alert("hello")}
-          size={50}
+          size={30}
         />
       );
     }, 3000);
@@ -98,100 +100,179 @@ export default function Home() {
 
   const refreshPage = () => {
     // console.log({label})
+    console.log({ itemValue });
     // setTest("hi");
     setClock("");
     // setData(todos);
     setData((prevTodos) => {
       return [...prevTodos];
     });
-    setRand("");
+    setRand(null);
+    setMyPick(0);
     //     return [prevTodos.filter((todos) => todo.id != id)
     //   ,...prevTodos]
 
     // })
   };
 
-  // console.log(sumbitHandler)
   return (
     <ScrollView style={styles.container}>
-     
       <Header />
-      { clock == "" ? <CountDown
-      size={50}/> : "" }
-        
 
-      
+      <Modal
+        visible={modalOpen}
+        animationType="slide"
+        style={{ backgroundColor: "blue" }}
+      >
+        <View
+          style={{
+            width: "100%",
+            backgroundColor: "#00ffff",
+            flex: 1,
+            flexDirection: "column",
+            alignItems: "center",
+            marginTop: 50,
+          }}
+        >
+          {/* <Text>Hello from the modal :)</Text>
+          <Text>Settings!</Text> */}
+          <MaterialIcons
+            name="close"
+            size={40}
+            style={{ ...styles.modalToggle, ...styles.modalClose }}
+            onPress={() => setModalOpen(false)}
+          />
+
+          <Picker
+            style={{ width: "100%" }}
+            selectedValue={mypick}
+            onValueChange={(itemValue, itemIndex) => setMyPick(itemValue)}
+          >
+            <Picker.Item label="Select Value" value={secTime[0]} />
+            <Picker.Item label="25min" value={secTime[0]} />
+            <Picker.Item label="45min" value={secTime[1]} />
+            <Picker.Item label="1hr" value={secTime[2]} />
+          </Picker>
+          <Text>{mypick}</Text>
+        </View>
+      </Modal>
+
+      {/* <MaterialIcons 
+        name='settings' 
+        size={40} 
+        style={styles.modalToggle}
+        onPress={() => setModalOpen(true)} 
+      /> */}
+
+      <View
+        style={{
+          flex: 1,
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "space-evenly",
+        }}
+      >
+        {clock == "" ? <CountDown size={30} /> : null}
+        {/* <MaterialIcons
+          name="settings"
+          size={34}
+          color="black"
+          style={styles.modalToggle}
+          onPress={() => setModalOpen(true)}
+        /> */}
+     
+        <View style={styles.refresh}>
+            <TouchableHighlight
+              style={{
+                height: 40,
+                width: 120,
+
+                borderRadius: 10,
+                backgroundColor: "tomato",
+                marginLeft: 50,
+                marginRight: 50,
+                marginTop: 1,
+              }}
+            >
+              <Button
+                onPress={() => setModalOpen(true)}
+                title="Settings"
+                color="blue"
+                fontSize="400"
+              />
+            </TouchableHighlight>
+          </View>
+      </View>
 
       <View style={styles.content}>
-      <Text>{clock}</Text>
-      <View style={styles.head}>
-        <Text style={{ fontSize: 38, color: "red" }}>
-          {" "}
-          {rand}{" "}
-          {rand != "" ? (
-            <Ionicons name="md-checkmark-circle" size={32} color="green" />
-          ) : (
-            ""
-          )}
-        </Text>
-      </View>
-      <View style={styles.compass}>
-        <View style={styles.refresh}>
-          <TouchableHighlight
-            style={{
-              height: 40,
-              width: 160,
-
-              borderRadius: 10,
-              backgroundColor: "tomato",
-              marginLeft: 50,
-              marginRight: 50,
-              marginTop: 1,
-            }}
-          >
-            {/* <Text>{test}</Text> */}
-            <Button onPress={refreshPage} title="Refresh" />
-          </TouchableHighlight>
+        <Text>{clock}</Text>
+        <View style={styles.head}>
+          <Text style={{ fontSize: 38, color: "red" }}>
+            {rand}
+            {rand != null ? (
+              <Ionicons name="md-checkmark-circle" size={32} color="green" />
+            ) : null}
+          </Text>
         </View>
-        <View style={styles.rando}>
-          <TouchableHighlight
-            style={{
-              height: 40,
-              width: 160,
 
-              borderRadius: 10,
-              backgroundColor: "tomato",
-              marginLeft: 50,
-              marginRight: 50,
-              marginTop: 1,
-            }}
-          >
-            <Button
-              onPress={GetValue}
-              title="Choose for me"
-              color="black"
-            ></Button>
-          </TouchableHighlight>
+        <View style={styles.compass}>
+          <View style={styles.refresh}>
+            <TouchableHighlight
+              style={{
+                height: 40,
+                width: 120,
+
+                borderRadius: 10,
+                backgroundColor: "tomato",
+                marginLeft: 50,
+                marginRight: 50,
+                marginTop: 1,
+              }}
+            >
+              <Button
+                onPress={refreshPage}
+                title="Refresh"
+                color="blue"
+                fontSize="400"
+              />
+            </TouchableHighlight>
+          </View>
+          <View style={styles.rando}>
+            <TouchableHighlight
+              style={{
+                height: 40,
+                width: 120,
+
+                fontSize: 100,
+
+                borderRadius: 10,
+                backgroundColor: "tomato",
+                marginLeft: 50,
+                marginRight: 50,
+                marginTop: 1,
+              }}
+            >
+              <Button
+                onPress={GetValue}
+                title="Randomise"
+                color="blue"
+              ></Button>
+            </TouchableHighlight>
+          </View>
         </View>
-      </View>
 
+        <SafeAreaView style={{ flex: 1 }}>
           <AddItem submitHandler={sumbitHandler} />
-        <ScrollView style={styles.list}>
-        
           <FlatList
+            style={{ color: "black" }}
             data={todos}
             renderItem={({ item }) => (
               <DeleteItem item={item} pressHandler={pressHandler} />
             )}
             keyExtractor={(item) => item.id}
           />
-        </ScrollView>
-      
+        </SafeAreaView>
       </View>
-
-    <About />
-
-    
     </ScrollView>
   );
 }
@@ -201,25 +282,53 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
 
-    backgroundColor: "white",
-    
-   
+    backgroundColor: "#00ffff",
   },
 
   content: {
     flex: 1,
-    backgroundColor: "#00ffff",
+    // backgroundColor: "#00ffff",
     alignItems: "center",
     marginTop: 1,
     marginBottom: 1,
 
     marginVertical: 1,
-    marginHorizontal: 1,
+    marginHorizontal: 5,
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "black",
   },
+  head: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  compass: {
+    flex: 1,
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    alignItems: "center",
+  },
+  refresh: {
+    flex: 1,
+    marginTop: 1,
+    marginBottom: 1,
+
+    marginVertical: 11,
+    marginHorizontal: 16,
+  },
+
+  rando: {
+    flex: 2,
+
+    paddingTop: 1,
+    marginBottom: 1,
+  },
+
   list: {
     flex: 1,
     backgroundColor: "white",
-    width: 800,
+    width: 350,
     height: 800,
 
     marginTop: 1,
@@ -228,30 +337,4 @@ const styles = StyleSheet.create({
     marginLeft: 29,
     marginRight: 29,
   },
-  refresh: {
-    flex: 1,
-    marginTop: 1,
-    marginBottom: 1,
-
-    marginVertical: 10,
-    marginHorizontal: 16,
-  },
-  head: {
-    flex: 1,
-    flexDirection: "row",
-    alignItems: "center"
-  },
-  rando: {
-    flex: 2,
-
-    paddingTop: 1,
-    marginBottom: 1,
-  },
-  compass: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "space-evenly",
-    alignItems: "center"
-  },
- 
 });
