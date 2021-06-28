@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-import { TextInput, Button, View, StyleSheet } from 'react-native';
+import { TextInput, Button, View, StyleSheet, TouchableHighlight } from 'react-native';
 
 function AddItem({submitHandler})  {
   const [text, setText] = useState('')
@@ -22,12 +22,31 @@ function AddItem({submitHandler})  {
       value={text}
     
       />
-      <Button
+      {/* <Button
       title='Enter'
       color='blue'
       onPress={() => {submitHandler(text); setText("")}}
     
-      />
+      /> */}
+             <TouchableHighlight
+                style={{
+                  height: 40,
+                  width: 120,
+
+                  borderRadius: 10,
+                  backgroundColor: "tomato",
+                  marginLeft: 10,
+                  marginRight: 5,
+                  marginTop: 1,
+                }}
+              >
+                <Button
+                  onPress={() => {submitHandler(text); setText("")}}
+                  title="ADD"
+                  color="blue"
+                  fontSize="400"
+                />
+              </TouchableHighlight>
     </View>
   );
 }

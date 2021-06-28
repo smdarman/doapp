@@ -116,7 +116,7 @@ export default function Home({ itemValue }) {
   };
 
   return (
-    <ScrollView style={styles.container}>
+    <View style={styles.container}>
       <Header />
 
       <Modal
@@ -164,103 +164,93 @@ export default function Home({ itemValue }) {
         onPress={() => setModalOpen(true)} 
       /> */}
 
-      <View
-        style={{
-          flex: 1,
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "space-evenly",
-        }}
-      >
-        {clock == "" ? <CountDown size={30} /> : null}
-        {/* <MaterialIcons
+      {clock == "" ? <CountDown size={30} /> : null}
+      {/* <MaterialIcons
           name="settings"
           size={34}
           color="black"
           style={styles.modalToggle}
           onPress={() => setModalOpen(true)}
         /> */}
-     
-        <View style={styles.refresh}>
-            <TouchableHighlight
-              style={{
-                height: 40,
-                width: 120,
-
-                borderRadius: 10,
-                backgroundColor: "tomato",
-                marginLeft: 50,
-                marginRight: 50,
-                marginTop: 1,
-              }}
-            >
-              <Button
-                onPress={() => setModalOpen(true)}
-                title="Settings"
-                color="blue"
-                fontSize="400"
-              />
-            </TouchableHighlight>
+  
+        <View style={styles.content}>
+          <Text>{clock}</Text>
+          <View style={styles.head}>
+            <Text style={{ fontSize: 38, color: "red" }}>
+              {rand}
+              {rand != null ? (
+                <Ionicons name="md-checkmark-circle" size={32} color="green" />
+              ) : null}
+            </Text>
           </View>
-      </View>
 
-      <View style={styles.content}>
-        <Text>{clock}</Text>
-        <View style={styles.head}>
-          <Text style={{ fontSize: 38, color: "red" }}>
-            {rand}
-            {rand != null ? (
-              <Ionicons name="md-checkmark-circle" size={32} color="green" />
-            ) : null}
-          </Text>
+          <View style={styles.compass}>
+            <View style={styles.refresh}>
+              <TouchableHighlight
+                style={{
+                  height: 40,
+                  width: 120,
+
+                  borderRadius: 10,
+                  backgroundColor: "tomato",
+                  marginLeft: 10,
+                  marginRight: 50,
+                  marginTop: 1,
+                }}
+              >
+                <Button
+                  onPress={() => setModalOpen(true)}
+                  title="Settings"
+                  color="blue"
+                  fontSize="400"
+                />
+              </TouchableHighlight>
+            </View>
+            <View style={styles.refresh}>
+              <TouchableHighlight
+                style={{
+                  height: 40,
+                  width: 120,
+
+                  borderRadius: 10,
+                  backgroundColor: "tomato",
+                  marginLeft: 20,
+                  marginRight: 50,
+                  marginTop: 1,
+                }}
+              >
+                <Button
+                  onPress={refreshPage}
+                  title="Refresh"
+                  color="blue"
+                  fontSize="400"
+                />
+              </TouchableHighlight>
+            </View>
+            <View style={styles.rando}>
+              <TouchableHighlight
+                style={{
+                  height: 40,
+                  width: 120,
+
+                  fontSize: 100,
+
+                  borderRadius: 10,
+                  backgroundColor: "tomato",
+                  marginLeft: 30,
+                  marginRight: 40,
+                  marginTop: 1,
+                }}
+              >
+                <Button
+                  onPress={GetValue}
+                  title="Randomise"
+                  color="blue"
+                ></Button>
+              </TouchableHighlight>
+            </View>
+          </View>
         </View>
-
-        <View style={styles.compass}>
-          <View style={styles.refresh}>
-            <TouchableHighlight
-              style={{
-                height: 40,
-                width: 120,
-
-                borderRadius: 10,
-                backgroundColor: "tomato",
-                marginLeft: 50,
-                marginRight: 50,
-                marginTop: 1,
-              }}
-            >
-              <Button
-                onPress={refreshPage}
-                title="Refresh"
-                color="blue"
-                fontSize="400"
-              />
-            </TouchableHighlight>
-          </View>
-          <View style={styles.rando}>
-            <TouchableHighlight
-              style={{
-                height: 40,
-                width: 120,
-
-                fontSize: 100,
-
-                borderRadius: 10,
-                backgroundColor: "tomato",
-                marginLeft: 50,
-                marginRight: 50,
-                marginTop: 1,
-              }}
-            >
-              <Button
-                onPress={GetValue}
-                title="Randomise"
-                color="blue"
-              ></Button>
-            </TouchableHighlight>
-          </View>
-        </View>
-
         <SafeAreaView style={{ flex: 1 }}>
           <AddItem submitHandler={sumbitHandler} />
           <FlatList
@@ -273,7 +263,7 @@ export default function Home({ itemValue }) {
           />
         </SafeAreaView>
       </View>
-    </ScrollView>
+   
   );
 }
 
@@ -286,14 +276,15 @@ const styles = StyleSheet.create({
   },
 
   content: {
-    flex: 1,
-    // backgroundColor: "#00ffff",
+    flex: 0.5,
+    // backgroundColor: "yellow",
     alignItems: "center",
     marginTop: 1,
     marginBottom: 1,
+    justifyContent: "space-evenly",
 
-    marginVertical: 1,
-    marginHorizontal: 5,
+    // marginVertical: 1,
+    // marginHorizontal: 1,
     fontSize: 20,
     fontWeight: "bold",
     color: "black",
@@ -307,19 +298,26 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "row",
     justifyContent: "space-evenly",
-    alignItems: "center",
+    // alignItems: "center",
+    marginLeft: 0,
+    marginRight: 45,
+    margin:0,
+  
+
   },
   refresh: {
     flex: 1,
     marginTop: 1,
     marginBottom: 1,
+    marginRight: 1,
+    marginLeft: 0,
 
     marginVertical: 11,
     marginHorizontal: 16,
   },
 
   rando: {
-    flex: 2,
+    flex: 1,
 
     paddingTop: 1,
     marginBottom: 1,
